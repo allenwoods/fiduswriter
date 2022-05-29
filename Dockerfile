@@ -1,4 +1,6 @@
 FROM node:5.11.0
+
+# Install dependencies
 RUN apt-get update && \
       apt-get -y dist-upgrade && \
       apt-get install -y \
@@ -12,18 +14,28 @@ RUN apt-get install -y \
 RUN echo "deb http://cdn-fastly.deb.debian.org/debian jessie main contrib" >> /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y --allow-unauthenticated fonts-noto ttf-mscorefonts-installer
+
+# Add external fonts
 # https://tex.stackexchange.com/questions/27659/how-to-use-downloaded-fonts-with-xetex-on-ubuntu
-RUN wget -q https://github.com/googlei18n/noto-cjk/blob/master/NotoSansCJK.ttc.zip?raw=true -O NotoSansCJK.ttc.zip
-RUN mkdir -p /usr/local/share/fonts/truetype/noto/ && unzip NotoSansCJK.ttc.zip -d /usr/local/share/fonts/truetype/noto/
-# RUN cp -r noto-cjk/*.ttf /usr/local/share/fonts/truetype/noto/
-RUN mkdir -p /usr/local/share/fonts/opentype/noto/ && \
-      wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip && \
-      wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
-RUN unzip -o NotoSerifCJKjp-hinted.zip -d /usr/local/share/fonts/opentype/noto/ && \
-      unzip -o NotoSansCJKjp-hinted.zip -d /usr/local/share/fonts/opentype/noto/
+RUN mkdir -p /usr/local/share/fonts/truetype/noto
+RUN mkdir -p /usr/local/share/fonts/opentype/noto/
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansCJK-VF.ttf.ttc -P /usr/local/share/fonts/truetype/noto
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansMonoCJK-VF.ttf.ttc -P /usr/local/share/fonts/truetype/noto
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansCJK-VF.otf.ttc -P /usr/local/share/fonts/opentype/noto/
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansMonoCJK-VF.otf.ttc /usr/local/share/fonts/opentype/noto/
+# RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/SuperOTC/NotoSansCJK.ttc.zip?raw=true -O NotoSansCJK.ttc.zip
+# / && unzip NotoSansCJK.ttc.zip -d /usr/local/share/fonts/opentype/noto/
+# # RUN cp -r noto-cjk/*.ttf /usr/local/share/fonts/truetype/noto/
+#  && \
+#       wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip && \
+#       wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
+# RUN unzip -o NotoSerifCJKjp-hinted.zip -d /usr/local/share/fonts/opentype/noto/ && \
+#       unzip -o NotoSansCJKjp-hinted.zip -d /usr/local/share/fonts/opentype/noto/
 RUN chown -R 1000:1000 /usr/local/share/fonts/
 RUN fc-cache -f -v
 RUN tlmgr init-usertree
+
+# Install madoko
 RUN npm install madoko -g
 RUN npm install -g madoko-local
 COPY add_user add_user
