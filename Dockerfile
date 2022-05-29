@@ -21,8 +21,8 @@ RUN mkdir -p /usr/local/share/fonts/truetype/noto
 RUN mkdir -p /usr/local/share/fonts/opentype/noto/
 RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansCJK-VF.ttf.ttc -P /usr/local/share/fonts/truetype/noto
 RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansMonoCJK-VF.ttf.ttc -P /usr/local/share/fonts/truetype/noto
-RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansCJK-VF.otf.ttc -P /usr/local/share/fonts/opentype/noto/
-RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansMonoCJK-VF.otf.ttc /usr/local/share/fonts/opentype/noto/
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansCJK-VF.otf.ttc -P -P /usr/local/share/fonts/opentype/noto/
+RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/OTC/NotoSansMonoCJK-VF.otf.ttc -P /usr/local/share/fonts/opentype/noto/
 # RUN wget -q https://github.com/googlefonts/noto-cjk/raw/main/Sans/SuperOTC/NotoSansCJK.ttc.zip?raw=true -O NotoSansCJK.ttc.zip
 # / && unzip NotoSansCJK.ttc.zip -d /usr/local/share/fonts/opentype/noto/
 # # RUN cp -r noto-cjk/*.ttf /usr/local/share/fonts/truetype/noto/
