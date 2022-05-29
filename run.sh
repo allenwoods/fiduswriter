@@ -1,0 +1,1 @@
+madoko-local -r --secret=${secret} --homedir="/madoko" --origin=${origin} --port=8080
