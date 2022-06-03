@@ -1,6 +1,7 @@
 FROM allenwoods/texlive:latest
 
 # Install dependencies
+USER root
 RUN apt-get update && \
       apt-get -y dist-upgrade && \
       apt-get install -y \
