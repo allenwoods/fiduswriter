@@ -11,9 +11,6 @@ RUN apt-get update && \
 RUN apt-get install -y \
       inotify-tools \
       xzdec
-RUN echo "deb http://cdn-fastly.deb.debian.org/debian jessie main contrib" >> /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y --allow-unauthenticated fonts-noto ttf-mscorefonts-installer
 
 # Add external fonts
 # https://tex.stackexchange.com/questions/27659/how-to-use-downloaded-fonts-with-xetex-on-ubuntu
