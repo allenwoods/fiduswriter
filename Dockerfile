@@ -5,7 +5,7 @@ USER root
 RUN apt-get update && \
       apt-get -y dist-upgrade && \
       apt-get install -y \
-          nodejs
+          nodejs npm
 
 # Install madoko
 RUN npm install madoko -g
